@@ -1,0 +1,5 @@
+pillow
+admin_interface
+django-crispy-forms
+django-bootstrap_icon
+django-cleanup  

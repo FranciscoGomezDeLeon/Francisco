@@ -1,0 +1,83 @@
+{% extends 'layouts/tienda.html' %} {% block content %}
+<div class="min-vh-100 d-flex flex-colum py-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-6 mx-auto ">
+
+                <div class="card">
+                    <div class="card-header text-center">
+                        <strong>CARRITO</strong>
+                    </div>
+                    <div class="card body p-2">
+                        {% load humanize %}
+                        <h6>Total: <strong> 
+                            U$S {{ importe_total_carro | intcomma }}
+                        </strong></h6>
+
+                    </div>
+
+                    <div class="card-element table-responsive">
+                        <table class="table table-condensed">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Item</th>
+                                    <th colspan="3">Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody class="py-4">
+                                {% if request.session.carro.items %} {% for key, value in request.session.carro.items %}
+                                <tr>
+                                    <td>{{ value.nombre }}</td>
+
+                                    {% load bootstrap_icons %}
+                                    <td class="text-center" colspan="3">
+                                        {{ value.cantidad }}
+                                        <a href="{% url 'tienda:addcart' value.producto_id %}" class="btn btn-secondary btn-sm" type="button"><i class="bi bi-plus"></i></a>
+
+                                        <a class="btn btn-secondary btn-sm" href="{% url 'tienda:restarcart' value.producto_id %}" type="button"><i class="bi bi-dash"></i> </a>
+                                    </td>
+
+                                    <td class="text-center">U$S {{ value.precio }} </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-secondary btn-sm" href="{% url 'tienda:delcart' value.producto_id %}" type="button"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %} {% else %}
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="alert alert-danger text-center ">
+
+                                            No se agregaron productos al carrito
+
+                                        </div>
+                                </tr>
+                                </tr>
+                                {% endif %}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="card-footer mx-auto ">
+                        {% if request.session.carro.items %}
+                        <a class="btn btn-danger mx-auto mt-0 " href="{% url 'tienda:procesar_compra' %}">Procesar Compra</a> {% else %}
+                        <a class="btn btn-danger mx-auto mt-0 disabled" href="#">Procesar Compra</a> {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-3 my-4 mx-auto ">
+                <div class="card card-footer align-item-center ">
+                    <a href="/ " class="btn btn-dark my-2 mx-auto ">Volver a Tienda</a>
+                    <a href="{% url 'tienda:cleancart' %}" class="btn btn-dark my-2 mx-auto ">Limpiar Carrito</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
