@@ -66,6 +66,7 @@ class UserEditForm(UserCreationForm):
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput, required=False)
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput, required=False)
     
+    
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']

@@ -43,24 +43,7 @@ def agregar_avatar(request):
     
     return render(request,"Auth/agregar_avatar.html",{"form":form})
     
-    # if request.method == "POST":
-            
-    #     form = AvatarForm(request.POST, request.FILES)
-
-    #     if form.is_valid():
-            
-    #         user = user.objects.get(username=request.user.username)
-    #         avatar = avatar.objects.get(usuario=user)
-    #         avatar.image = info["image"]
-    #         avatar.save()
-    #         info = form.cleaned_data
-        
-    #         return render(request,"index.html")
-
-    #     else:
-    #         form = AvatarForm()
     
-    # return render(request,"auth/agregaravatar.html")
     
 
 def index(request):
@@ -330,18 +313,18 @@ def editar_perfil(request):
         if form.is_valid():
 
             info = form.cleaned_data
-            username = info["username"]
+            user.username = info["username"]
             user.first_name = info["first_name"]
             user.last_name = info["last_name"]
             user.email = info["email"]
-            user.avatar = info["avatar"]
+            
 
             user.save()
 
             return render(request,"nosotros.html",{"form":form})
     
     else:
-        form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name, "avatar":user.avatar})
+        form = UserEditForm(initial={"email":user.email, "first_name":user.first_name, "last_name":user.last_name,"username":user.username})
 
     return render(request,"Auth/editar_perfil.html", {"form":form})
 

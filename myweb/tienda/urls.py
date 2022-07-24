@@ -35,8 +35,8 @@ urlpatterns = [
     path('registrar/', views.registrar, name='registrar'),
     path('login/', LoginView.as_view(template_name='auth/login.html'), name='login'),
     path('editar_perfil/', views.editar_perfil, name='editar_perfil'),
-    path('agregar_avatar', views.agregar_avatar, name="agregar_avatar"),
-    path('Auth/mensaje/', views.mensaje, name="mensaje"),
+    path('agregar_avatar', views.agregar_avatar, name='agregar_avatar'),
+    path('Auth/mensaje/', views.mensaje, name='mensaje'),
     
     
     #Paths del carrito

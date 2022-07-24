@@ -98,9 +98,15 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">U$S {{ importe_total_carro | intcomma }}</span>
                         </a>
                     </div>
+                    
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/editar_perfil">Editar</a>
                         <a class="nav-link active" aria-current="page" href="agregar_avatar">
                             <li class="nav-item"><p class="text-light my-0 mx-0"> {{ user.username }}</p></li>
+                            
+                    
+                            
+                                
                             
                             {% if user.avatar.imagen.url %}
                                 <img class="rounded" src="{{ user.avatar.imagen.url }}" alt="" srcset="" style="height: 40px;">
@@ -116,9 +122,8 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión
-
-                        </a>
+                    
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión</a>
                     </li>
                     
                     
@@ -152,9 +157,9 @@
         <div class="row">
             <ul class="col-4 list-unstyled text-center mx-auto my-auto">
                 <h6 class="text-white">Enlaces rápidos</h6>
-                <li class="list-unstyled text-white">
-                    <a href="/garantia" class="stretched-link text-white">Garantía</a></li>
-                <li>
+                
+
+                    <li>
                     <a href="/devoluciones" class="stretched-link text-white">Devoluciones</a></li>
 
             </ul>
